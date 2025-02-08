@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tiptap-editor .ProseMirror {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 10px;
+  margin-left: 10px;
+  color: #555;
+  font-style: italic;
+}
