@@ -11,6 +11,7 @@ function App() {
         <UserForm />
         <Editor />
       </div>
+      <h2 className="text-md text-black/70 mt-9 ml-4 font-medium">@Abhay_Negi</h2>
     </div>
   )
 }
