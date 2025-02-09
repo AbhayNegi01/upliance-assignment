@@ -2,21 +2,36 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import { Bold, Italic, Underline as UnderlineIcon, List, ListOrdered, Quote } from "lucide-react";
+import { useEffect } from "react";
 
-const Editor = () => {
-  const savedContent = localStorage.getItem("tiptap-content") || "";
+const Editor = ({ userData }) => {
+  if (!userData) return <p className="text-gray-500">No user data available.</p>;
+  
+  const formattedContent = `
+  <h2>User Information</h2>
+  <p><strong>Name:</strong> ${userData.name || "N/A"}</p>
+  <p><strong>Address:</strong> ${userData.address || "N/A"}</p>
+  <p><strong>Email:</strong> ${userData.email || "N/A"}</p>
+  <p><strong>Phone:</strong> ${userData.phone || "N/A"}</p>
+`;
 
   const editor = useEditor({
     extensions: [
       StarterKit,
       Underline,
     ],
-    content: savedContent,
+    content: formattedContent,
     onUpdate: ({ editor }) => {
       const content = editor.getHTML();
       localStorage.setItem("tiptap-content", content);
     },
   });
+
+  useEffect(() => {
+    if (editor && userData) {
+      editor.commands.setContent(formattedContent);
+    }
+  }, [userData]);
 
   if (editor) {
     window.editor = editor;
